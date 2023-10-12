@@ -1,0 +1,74 @@
+<html>
+
+<head>
+    <title>Life Calendar</title>
+    <style type="text/css">
+        #header {
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #content {
+            padding: 20px 40px 20px 0px;
+        }
+
+        #passed {
+            width: 5px;
+            height: 5px;
+            background: blue;
+            float: left;
+            margin: 1px;
+        }
+
+        #left {
+            width: 3px;
+            height: 3px;
+            background: white;
+            border: 1px solid black;
+            float: left;
+            margin: 1px;
+        }
+
+        .clear {
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <h1>生まれた日: {{ birth_date }}</h1>
+        <h1>最後の日: {{ death_date }} ( {{ total_years }} years)</h1>
+    </div>
+
+    <div id="content">
+        <ul>
+            <li>
+                <h2>週単位の残された時間- 残り: {{ left_weeks//52 }}年{{ left_weeks%52 }}週</h2>
+            </li>
+            {% for i in range(passed_weeks) %}
+            <div id="passed"></div>
+            {% endfor %}
+            {% for i in range(left_weeks) %}
+            <div id="left"></div>
+            {% endfor %}
+
+            <div class="clear"></div>
+
+            <li>
+                <h2>日単位の残された時間- 残り: {{ left_days//365 }}年{{ left_days%365 }}日</h2>
+            </li>
+            {% for i in range(passed_days) %}
+            <div id="passed"></div>
+            {% endfor %}
+            {% for i in range(left_days) %}
+            <div id="left"></div>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+
+</html>
