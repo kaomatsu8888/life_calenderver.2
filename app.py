@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from datetime import datetime, timedelta
-
+# ライフカレンダーを表示するためのルート
 app = Flask(__name__)
 
 
@@ -22,7 +22,7 @@ def calendar():
     # 仮の死亡日を計算（例：生後84年後）
     death_date = birth_date + timedelta(days=84 * 365)
 
-    # 以下は既存の計算コード
+    # 今日の日付を取得
     now = datetime.now()
     total_days = (death_date - birth_date).days
     passed_days = (now - birth_date).days
@@ -32,6 +32,7 @@ def calendar():
     passed_weeks = int(passed_days / 7)
     left_weeks = int(left_days / 7)
 
+    # ライフカレンダーを表示
     return render_template(
         "index.html",
         birth_date=birth_date.strftime("%B %d, %Y"),
@@ -46,6 +47,6 @@ def calendar():
         left_weeks=left_weeks,
     )
 
-
+ # ユーザーからの入力を受け取り、ライフカレンダーを表示するルート
 if __name__ == "__main__":
     app.run(debug=True)
